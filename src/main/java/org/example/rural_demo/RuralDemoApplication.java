@@ -1,9 +1,11 @@
 package org.example.rural_demo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("org.example.rural_demo.mapper")
 public class RuralDemoApplication {
 
     public static void main(String[] args) {

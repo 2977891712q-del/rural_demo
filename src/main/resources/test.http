@@ -1,0 +1,43 @@
+### 1. 用户注册
+POST http://localhost:8080/user/register
+Content-Type: application/json
+
+{
+  "username": "zhangsan",
+  "password": "123456",
+  "realName": "张三",
+  "phone": "13800138000"
+}
+
+### 2. 用户登录
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "username": "zhangsan",
+  "password": "123456"
+}
+
+### 3. 通知列表查询
+GET http://localhost:8080/notice/page?pageNum=1&pageSize=10
+
+### 4. 村民提交工单
+POST http://localhost:8080/workorder/submit
+Content-Type: application/json
+
+{
+  "title": "村东头水管坏了",
+  "content": "3组村东头水管破裂，水流一地，影响村民用水"
+}
+
+### 5. 村干部处理工单
+PUT http://localhost:8080/workorder/handle
+Content-Type: application/json
+
+{
+  "id": 1,
+  "result": "已安排维修人员前往维修，预计下午修好"
+}
+
+### 6. 查询工单列表
+GET http://localhost:8080/workorder/page?pageNum=1&pageSize=10

@@ -13,7 +13,6 @@ public class Result <T>{
     //返回的数据
     private T data;
 
-    //无参构造方法
     public Result() {
     }
     //全参构造方法
