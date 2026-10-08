@@ -20,6 +20,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/user/login",
                         "/user/register",
+                        // 通知相关，村民不登录也能看
+                        "/notice/page",
+                        "/notice/detail/**",
+                        // 农产品相关，村民不登录也能看
+                        "/product/list",
+                        "/product/page",
+                        "/product/*",
+                        // knife4j接口文档
                         "/doc.html",
                         "/webjars/**",
                         "/swagger-resources/**",

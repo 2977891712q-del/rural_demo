@@ -21,32 +21,29 @@ public class WorkOrderController {
     @Autowired
     private WorkOrderService workOrderService;
 
-    //村民提交工单
+    //村民提交工单，userId从Token里取
     @PostMapping("/submit")
-    public Result<Void> submitWorkOrder(@RequestBody WorkOrderSubmitDTO dto) {
-        // 现在还没做登录拦截，先写死用户ID为1（村民张三）
-        Long userId = 1L;
+    public Result<Void> submitWorkOrder(@RequestBody WorkOrderSubmitDTO dto,
+                                        @RequestAttribute Long userId) {
         workOrderService.submitWorkOrder(userId, dto);
         return Result.success();
     }
 
-    //村干部处理工单
+    //村干部处理工单，处理人就是当前登录的村干部
     @PutMapping("/handle")
-    public Result<Void> handleWorkOrder(@RequestBody WorkOrderHandleDTO dto) {
-        // 现在还没做登录拦截，先写死处理人ID为2（村干部李四）
-        Long handleUserId = 2L;
-        workOrderService.handleWorkOrder(handleUserId, dto);
+    public Result<Void> handleWorkOrder(@RequestBody WorkOrderHandleDTO dto,
+                                        @RequestAttribute Long userId) {
+        workOrderService.handleWorkOrder(userId, dto);
         return Result.success();
     }
 
-    //分页查询工单列表
+    //分页查询工单列表，userId和role从Token里取
     @GetMapping("/page")
     public Result<Page<WorkOrder>> getWorkOrderPage(
             @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
-        // 现在还没做登录拦截，先写死：村民角色(role=0)，用户ID为1
-        Long userId = 1L;
-        Integer role = 0;
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestAttribute Long userId,
+            @RequestAttribute Integer role) {
         Page<WorkOrder> page = workOrderService.getWorkOrderPage(userId, role, pageNum, pageSize);
         return Result.success(page);
     }

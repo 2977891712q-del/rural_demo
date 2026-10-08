@@ -14,12 +14,14 @@ public class JwtInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         if(token == null || !token.startsWith("Bearer ")){
             response.setStatus(401);
+            response.setContentType("application/json;charset=utf-8");
             response.getWriter().write("{\"code\":401,\"msg\":\"未登录，请先登录\",\"data\":null}");
             return false;
         }
         String realToken = token.substring(7);
         if(!JwtUtil.validateToken(realToken)){
             response.setStatus(401);
+            response.setContentType("application/json;charset=utf-8");
             response.getWriter().write("{\"code\":401,\"msg\":\"token无效或已过期\",\"data\":null}");
             return false;
         }

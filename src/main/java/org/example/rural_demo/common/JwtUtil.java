@@ -7,10 +7,10 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 public class JwtUtil {
-    // 密钥，项目上线要换成更长的秘钥
-    private static final SecretKey KEY = Keys.hmacShaKeyFor("12345678901234567890123456789012".getBytes());
-    // 过期时间 2小时
-    private static final long EXPIRATION = 2 * 60 * 60 * 1000;
+    // 密钥
+    private static final SecretKey KEY = Keys.hmacShaKeyFor("rural_demo_secret_key_2026_o3934812738".getBytes());
+    // 过期时间 24小时
+    private static final long EXPIRATION = 24 * 60 * 60 * 1000;
 
     /**
      * 生成token
